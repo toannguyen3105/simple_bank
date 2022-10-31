@@ -2,7 +2,6 @@ package api
 
 import (
 	"database/sql"
-	"fmt"
 	"github.com/gin-gonic/gin"
 	db "github.com/toannguyen3105/simplebank/db/sqlc"
 	"net/http"
@@ -74,8 +73,6 @@ func (server *Server) listAccount(ctx *gin.Context) {
 		Limit:  req.PageSize,
 		Offset: (req.PageID - 1) * req.PageSize,
 	}
-	fmt.Println("LIMIT: ", arg.Limit)
-	fmt.Println("OFFSET: ", arg.Offset)
 	accounts, err := server.store.ListAccounts(ctx, arg)
 	if err != nil {
 		if err == sql.ErrNoRows {
